@@ -18,10 +18,13 @@ import com.anand.mylibrary.MyService
 class MainActivity : AppCompatActivity() {
 
     lateinit var  serviceStatus:TextView
+    lateinit var  data:TextView
     private val connection: ServiceConnection = object : ServiceConnection {
         override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {
             val service: IRemoteService = IRemoteService.Stub.asInterface(iBinder)
             serviceStatus.text="Service Connected"
+            data.text=service.data
+
 //            Toast.makeText(
 //                this@MainActivity,
 //                service.data,
@@ -38,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         serviceStatus=findViewById(R.id.service_status)
-
+        data=findViewById(R.id.data)
 
     }
 
